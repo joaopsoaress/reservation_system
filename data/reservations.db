@@ -1,0 +1,12 @@
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "data", "reservations.db")
+
+register_tortoise(
+    app,
+    db_url=f"sqlite:///{DB_PATH}",
+    modules={"models": ["backend.models"]},
+    generate_schemas=True,
+    add_exception_handlers=True,
+)
