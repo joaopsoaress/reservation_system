@@ -143,3 +143,5 @@ Durante desenvolvimento, é possível usar banco em memória para testes rápido
             },
         },
 }
+
+<div align="center"> <p>Desenvolvido por João P. Soares 🧑‍💻</p> </div>
