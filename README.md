@@ -32,6 +32,7 @@ Este projeto é um sistema de reservas/slots que permite:
     │ └── database.py # Configuração do Tortoise ORM
     ├── frontend/
     │ ├── index.html # Página principal com calendário/lista de horários
+    | ├── styles.css # CSS para estilizar
     │ └── app.js # JS para consumir a API
     ├── data/ # Pasta para banco SQLite persistente
     └── README.md # Esta documentação
@@ -145,3 +146,4 @@ Durante desenvolvimento, é possível usar banco em memória para testes rápido
 }
 
 <div align="center"> <p>Desenvolvido por João P. Soares 🧑‍💻</p> </div>
+
