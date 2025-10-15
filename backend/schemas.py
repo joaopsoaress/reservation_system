@@ -1,27 +1,17 @@
 from pydantic import BaseModel
-import datetime
+from datetime import date, time
 
 class SlotBase(BaseModel):
-    date: datetime.date
-    hour: datetime.time
+    date: date
+    hour: str  # Using string "HH:MM:SS"
     duration: int
-
-    model_config = {
-        "from_attributes": True  # substitui orm_mode=True
-    }
-
-class SlotOut(BaseModel):
-    id: int
-    date: datetime.date
-    hour: datetime.time
-    duration: int
-    status: str
 
 class SlotCreate(SlotBase):
     pass
 
-class SlotRead(SlotBase):
+class SlotOut(SlotBase):
     id: int
+    status: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
