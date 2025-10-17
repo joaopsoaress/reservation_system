@@ -1,9 +1,11 @@
+// frontend/script.js
 class ReservationSystem {
     constructor() {
         this.apiBaseUrl = 'http://127.0.0.1:8000';
         this.init();
     }
 
+    // Generic method to make API requests
     async makeRequest(endpoint, options = {}) {
         const url = `${this.apiBaseUrl}${endpoint}`;
         
@@ -29,6 +31,7 @@ class ReservationSystem {
         }
     }
 
+    // Load and display all slots
     async loadSlots() {
         this.showLoading();
         this.hideError();
@@ -44,6 +47,7 @@ class ReservationSystem {
         }
     }
 
+    // Create a new slot
     async createSlot() {
         const form = document.getElementById('createSlotForm');
         const button = form.querySelector('button[type="submit"]');
@@ -84,6 +88,7 @@ class ReservationSystem {
         }
     }
 
+    // Reserve a slot
     async reserveSlot(slotId) {
         try {
             await this.makeRequest(`/slots/${slotId}/reserve`, {
@@ -98,6 +103,7 @@ class ReservationSystem {
         }
     }
 
+    // Delete a slot
     async deleteSlot(slotId) {
         if (!confirm('Are you sure you want to delete this slot?')) {
             return;
@@ -116,6 +122,7 @@ class ReservationSystem {
         }
     }
 
+    // Display slots in the UI
     displaySlots(slots) {
         const container = document.getElementById('slotsContainer');
         const noSlots = document.getElementById('noSlots');
@@ -156,6 +163,7 @@ class ReservationSystem {
         `).join('');
     }
 
+    // Format date to a readable string
     formatDate(dateString) {
         const date = new Date(dateString);
         return date.toLocaleDateString('en-US', {
@@ -166,21 +174,25 @@ class ReservationSystem {
         });
     }
 
+    // Format time to a readable string
     formatTime(timeString) {
         const [hours, minutes] = timeString.split(':');
         return `${hours}:${minutes}`;
     }
 
+    // Show loading indicator
     showLoading() {
         document.getElementById('loading').style.display = 'block';
         document.getElementById('slotsContainer').style.display = 'none';
     }
 
+    // Hide loading indicator
     hideLoading() {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('slotsContainer').style.display = 'grid';
     }
 
+    // Show error message
     showError(message) {
         const errorDiv = document.getElementById('errorMessage');
         errorDiv.textContent = message;
@@ -190,14 +202,17 @@ class ReservationSystem {
         setTimeout(() => this.hideError(), 5000);
     }
 
+    // Hide error message
     hideError() {
         document.getElementById('errorMessage').style.display = 'none';
     }
 
+    // Show success message
     showSuccess(message) {
         alert('✅ ' + message);
     }
 
+    // Bind UI events
     bindEvents() {
         // Creation form
         document.getElementById('createSlotForm').addEventListener('submit', (e) => {
@@ -211,6 +226,7 @@ class ReservationSystem {
         });
     }
 
+    // Initialize the reservation system
     init() {
         this.bindEvents();
         this.loadSlots();
