@@ -6,8 +6,10 @@ from datetime import date, time
 from backend.schemas import SlotCreate, SlotOut
 from backend.crud import get_slot, get_slots, create_slot, reserve_slot, update_slot, delete_slot
 
+    # Router for slot-related endpoints
 router = APIRouter()
 
+    # Endpoint to get all slots
 @router.get("/slots", response_model=List[SlotOut])
 async def read_slots():
     try:
@@ -15,6 +17,7 @@ async def read_slots():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading slots: {str(e)}")
 
+    # Endpoint to get a specific slot by ID
 @router.get("/slots/{slot_id}", response_model=SlotOut)
 async def read_slot(slot_id: int):
     try:
@@ -27,6 +30,7 @@ async def read_slot(slot_id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error loading slot: {str(e)}")
 
+    # Endpoint to create a new slot
 @router.post("/slots", response_model=SlotOut)
 async def add_slot(slot: SlotCreate):
     try:
@@ -40,6 +44,7 @@ async def add_slot(slot: SlotCreate):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error creating slot: {str(e)}")
 
+    # Endpoint to reserve a slot
 @router.put("/slots/{slot_id}/reserve", response_model=SlotOut)
 async def reserve(slot_id: int):
     try:
@@ -52,6 +57,7 @@ async def reserve(slot_id: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error reserving slot: {str(e)}")
 
+    # Endpoint to delete a slot
 @router.delete("/slots/{slot_id}")
 async def remove_slot(slot_id: int):
     try:

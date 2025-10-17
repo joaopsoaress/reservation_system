@@ -1,6 +1,7 @@
 from tortoise import fields
 from tortoise.models import Model
 
+    # Slot model definition
 class Slot(Model):
     id = fields.IntField(pk=True)
     date = fields.DateField()
@@ -8,5 +9,6 @@ class Slot(Model):
     duration = fields.IntField()
     status = fields.CharField(max_length=20, default='available')
 
+    # Meta information
 class Meta:
     table = "slots"
